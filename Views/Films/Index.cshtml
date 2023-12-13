@@ -1,0 +1,66 @@
+﻿@model IEnumerable<HW_3_4_5_Films_MVC.Models.Film>
+
+@{
+    ViewData["Title"] = "Подборка кино на неделю";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="background-color:skyblue">Подборка кино на неделю</h1>
+
+<p>
+    <a asp-action="Create">Создать новый</a>
+</p>
+<table class="table" style="background-color:aliceblue">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name ) 
+            </th>
+            <th style="width: 500px">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jenre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Poster)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+                <td style="width: 500px">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Jenre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producer)
+            </td>
+            <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Poster)" style="width:128px;height:128px;"  />
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id" >Изменить</a> 
+                <a asp-action="Details" asp-route-id="@item.id">Описание</a> 
+                    <a asp-action="Delete" asp-route-id="@item.id" style="color:red">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
